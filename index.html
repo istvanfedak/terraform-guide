@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>terraform - the simple guide</title>
+</head>
+<body>
+    <div>
+        <h1>terraform - the simple gudie</h1>
+        <p>just a simple guide for getting started with terraform</p>
+    </div>
+    <div>
+        <h2>setup</h2>
+        <p>
+            <a href="https://www.terraform.io/downloads.html">
+                Download Terraform</a>
+        </p>
+    </div>
+    <div>
+        <h2>creating a new terraform directory</h2>
+        <p>
+            create a new directory, open it and create a provider.tf file<br>
+            
+            enter one of the following cloud poviders into the file and save<br>
+            <code>
+            provider "aws" {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;region = "us-east-1"<br>
+            }
+            </code><br><br>
+            <code>
+            provider "azurerm" {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;features {}<br>
+            }
+            </code><br><br>
+            <code>
+            provider "google" {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;project = "my-project-id"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;region = "us-central1"<br>
+            }
+            </code><br><br>
+            <a href="https://registry.terraform.io/namespaces/hashicorp">
+                View all providers</a>
+        </p>
+    </div>
+    <div>
+        <h2>initialize a new directory</h2>
+        <p>
+            create a new directory, open it and perform a<br>
+            <code>terraform init</code><br>
+            to initialize the terraform project
+        </p>
+    </div>
+
+    <div>
+        <h2>blocks</h2>
+        <p>
+            Blocks are used to define the configuration of some kind of object,<br>
+            like a resource. Blocks have a <code>block type</code>, can have<br>
+            zero or more <code>labels</code>, and have a body that contains any<br>
+            number of <code>arguments</code> and nested blocks<br><br>
+
+            <code>
+            &lt;block type&gt; "&lt;block label&gt;" "&lt;block label&gt;" {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;argument&gt;<br>
+            }
+            </code><br><br>
+        
+            The ordering of blocks and the files they are organized into are<br>
+            generally not significant<br>
+        </p>
+    </div>
+
+    <!--
+    <div>
+        <h2>block types</h2>
+        <p></p>
+    </div>
+
+    <div>
+        <h2>block labels</h2>
+        <p></p>
+    </div>
+
+    <div>
+        <h2>arguments</h2>
+        <p></p>
+    </div>
+
+    <div>
+        <h2>links & resources</h2>
+        <p></p>
+    </div>
+    -->`
+
+</body>
+</html>
