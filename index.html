@@ -6,10 +6,12 @@
 	<title>terraform - the simple guide</title>
 </head>
 <body>
+
     <div>
         <h1>terraform - the simple gudie</h1>
         <p>just a simple guide for getting started with terraform</p>
     </div>
+
     <div>
         <h2>setup</h2>
         <p>
@@ -17,81 +19,163 @@
                 Download Terraform</a>
         </p>
     </div>
+
     <div>
-        <h2>creating a new terraform directory</h2>
+        <h2>initialize</h2>
         <p>
-            create a new directory, open it and create a provider.tf file<br>
-            
-            enter one of the following cloud poviders into the file and save<br>
+            You can initialize the working directory using<br>
+            <code>terraform init</code><br>
+            This is the first command that should be run after writing a new 
+            Terraform configuration
+        </p>
+    </div>
+
+    <div>
+        <h2>validate</h2>
+        <p>
+            Validate that the configuration is valid by running the command<br>
+            <code>terraform validate</code><br>
+            Validation requires an initialized working directory
+        </p>
+    </div>
+
+    <div>
+        <h2>plan</h2>
+        <p>
+            Create an execution plan of changes that will be applied by
+            executing<br>
+            <code>terraform plan</code><br>
+            The existing infrastructure will not be modified
+        </p>
+    </div>
+
+    <div>
+        <h2>apply</h2>
+        <p>
+            Deploy and apply the defined changes by running<br>
+            <code>terraform apply</code><br>
+            This will provision the resources in the data center infrastructure 
+        </p>
+    </div>
+
+    <div>
+        <h2>destroy</h2>
+        <p>
+            To destroy all the Terraform-managed infrastructure, use<br>
+            <code>terrafrom destroy</code>
+        </p>
+    </div>
+
+    <div>
+        <h2>modules</h2>
+        <p>
+            Terraform modules are files that contain blocks and the <code>.tf</code> ending<br>
+        </p>
+    </div>
+    <div>
+        <h2>providers</h2>
+        <p>
+            Providers include resources that are used to define the 
+            infrastructure that will be created<br><br>
             <code>
             provider "aws" {<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;region = "us-east-1"<br>
             }
             </code><br><br>
-            <code>
-            provider "azurerm" {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;features {}<br>
-            }
-            </code><br><br>
-            <code>
-            provider "google" {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;project = "my-project-id"<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;region = "us-central1"<br>
-            }
-            </code><br><br>
+            
             <a href="https://registry.terraform.io/namespaces/hashicorp">
                 View all providers</a>
-        </p>
-    </div>
-    <div>
-        <h2>initialize a new directory</h2>
-        <p>
-            create a new directory, open it and perform a<br>
-            <code>terraform init</code><br>
-            to initialize the terraform project
         </p>
     </div>
 
     <div>
         <h2>blocks</h2>
         <p>
-            Blocks are used to define the configuration of some kind of object,<br>
-            like a resource. Blocks have a <code>block type</code>, can have<br>
-            zero or more <code>labels</code>, and have a body that contains any<br>
+            Blocks are used to define the configuration of some kind of object,
+            like a resource<br>
+            Blocks have a <code>block type</code>, can have zero or more 
+            <code>labels</code>, and have a body that contains any
             number of <code>arguments</code> and nested blocks<br><br>
 
             <code>
             &lt;block type&gt; "&lt;block label&gt;" "&lt;block label&gt;" {<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&lt;argument&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;argument&gt;<br>
             }
             </code><br><br>
         
-            The ordering of blocks and the files they are organized into are<br>
+            The ordering of blocks and the modules they are organized into are
             generally not significant<br>
         </p>
     </div>
 
-    <!--
     <div>
         <h2>block types</h2>
-        <p></p>
+        <p>
+            Block types define the behavior of a block and how many labels
+            must follow the type keyword<br>
+
+            Some of the most common block types are <code>resource</code>, 
+            intput <code>variable</code>, <code>output</code> varaible,
+            <code>data</code> source, etc<br>
+        </p>
     </div>
 
     <div>
-        <h2>block labels</h2>
-        <p></p>
+        <h2>resources</h2>
+        <p>
+            Resouces define the infrastructure that will be created given what
+            arguments and other attributes the resource supports<br><br>
+
+            <code>
+            resource "aws_instance" "webserver" {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;ami = "ami-a1b2c3d4"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;instance_type = var.instanceType<br>
+            }<br><br>
+            </code>             
+        </p>
     </div>
 
     <div>
-        <h2>arguments</h2>
-        <p></p>
+        <h2>variables</h2>
+        <p>
+            Input variables can be used as parameters<br><br>
+            <code>variable "instanceType" { default = "t2.micro" }</code><br>
+        </p>
     </div>
 
     <div>
-        <h2>links & resources</h2>
-        <p></p>
+        <h2>outputs</h2>
+        <p>
+            Output variables define values that will be printed
+            when changes to the infrastructure are applied<br><br>
+
+            <code>
+            output "webserver_public_ip" {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;value = aws_instance.webserver.public_ip<br>
+            }<br><br>
+            </code>
+            You can also query outputs using<br>
+            <code>terraform output</code>
+        </p>
     </div>
-    -->`
+
+    <div>
+        <h2>data</h2>
+        <p>
+            Data sources allow data to be fetched from outside of a Terrafrom
+            configuration<br><br>
+
+            <code>
+            data "local_file" "input" {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;filename = "localfile.txt"<br>
+            }
+            </code><br><br>
+
+            Providers may offer data sources that allow you to fetch information
+            from the cloud
+        </p>
+    </div>
 
 </body>
 </html>
