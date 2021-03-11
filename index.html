@@ -4,15 +4,16 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>terraform - the simple guide</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
 
-    <div>
-        <h1>terraform - the simple gudie</h1>
+    <div class="scrollblock block-title">
+        <h1>terraform - the simple guide</h1>
         <p>just a simple guide for getting started with terraform</p>
     </div>
 
-    <div>
+    <div class="scrollblock block-setup">
         <h2>setup</h2>
         <p>
             <a href="https://www.terraform.io/downloads.html">
@@ -20,7 +21,7 @@
         </p>
     </div>
 
-    <div>
+    <div class="scrollblock block-init">
         <h2>initialize</h2>
         <p>
             You can initialize the working directory using<br>
@@ -30,16 +31,16 @@
         </p>
     </div>
 
-    <div>
+    <div class="scrollblock block-validate">
         <h2>validate</h2>
         <p>
             Validate that the configuration is valid by running the command<br>
             <code>terraform validate</code><br>
-            Validation requires an initialized working directory
+            Requires the working directory to be initialized
         </p>
     </div>
 
-    <div>
+    <div class="scrollblock block-plan">
         <h2>plan</h2>
         <p>
             Create an execution plan of changes that will be applied by
@@ -49,7 +50,7 @@
         </p>
     </div>
 
-    <div>
+    <div class="scrollblock block-apply">
         <h2>apply</h2>
         <p>
             Deploy and apply the defined changes by running<br>
@@ -58,7 +59,7 @@
         </p>
     </div>
 
-    <div>
+    <div class="scrollblock block-destroy">
         <h2>destroy</h2>
         <p>
             To destroy all the Terraform-managed infrastructure, use<br>
@@ -66,21 +67,20 @@
         </p>
     </div>
 
-    <div>
+    <div class="scrollblock block-modules">
         <h2>modules</h2>
         <p>
             Terraform modules are files that contain blocks and the <code>.tf</code> ending<br>
         </p>
     </div>
-    <div>
+
+    <div class="scrollblock block-providers">
         <h2>providers</h2>
         <p>
             Providers include resources that are used to define the 
             infrastructure that will be created<br><br>
             <code>
-            provider "aws" {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;region = "us-east-1"<br>
-            }
+            provider "aws" { region = "us-east-1" }
             </code><br><br>
             
             <a href="https://registry.terraform.io/namespaces/hashicorp">
@@ -88,7 +88,7 @@
         </p>
     </div>
 
-    <div>
+    <div class="scrollblock block-blocks">
         <h2>blocks</h2>
         <p>
             Blocks are used to define the configuration of some kind of object,
@@ -98,10 +98,7 @@
             number of <code>arguments</code> and nested blocks<br><br>
 
             <code>
-            &lt;block type&gt; "&lt;block label&gt;" "&lt;block label&gt;" {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&lt;argument&gt;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&lt;argument&gt;<br>
-            }
+            &lt;block type&gt; "&lt;label&gt;" "&lt;label&gt;" { &lt;arguments&gt; }
             </code><br><br>
         
             The ordering of blocks and the modules they are organized into are
@@ -109,7 +106,7 @@
         </p>
     </div>
 
-    <div>
+    <div class="scrollblock block-types">
         <h2>block types</h2>
         <p>
             Block types define the behavior of a block and how many labels
@@ -121,22 +118,19 @@
         </p>
     </div>
 
-    <div>
+    <div class="scrollblock block-resources">
         <h2>resources</h2>
         <p>
             Resouces define the infrastructure that will be created given what
             arguments and other attributes the resource supports<br><br>
 
-            <code>
-            resource "aws_instance" "webserver" {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;ami = "ami-a1b2c3d4"<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;instance_type = var.instanceType<br>
-            }<br><br>
-            </code>             
+            <code>resource "aws_instance" "webserver" { </code><br>
+            <code>ami = "ami-a1b2c3d4"</code><br>
+            <code>instance_type = var.instanceType }</code><br><br>
         </p>
     </div>
 
-    <div>
+    <div class="scrollblock block-variables"> 
         <h2>variables</h2>
         <p>
             Input variables can be used as parameters<br><br>
@@ -144,33 +138,27 @@
         </p>
     </div>
 
-    <div>
+    <div class="scrollblock block-outputs">
         <h2>outputs</h2>
         <p>
             Output variables define values that will be printed
             when changes to the infrastructure are applied<br><br>
 
-            <code>
-            output "webserver_public_ip" {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;value = aws_instance.webserver.public_ip<br>
-            }<br><br>
-            </code>
-            You can also query outputs using<br>
+            <code>output "webserver_public_ip" {</code><br>
+            <code>value = aws_instance.webserver.public_ip }</code><br><br>
+            You can also query outputs using<br><br>
             <code>terraform output</code>
         </p>
     </div>
 
-    <div>
+    <div class="scrollblock block-data">
         <h2>data</h2>
         <p>
             Data sources allow data to be fetched from outside of a Terrafrom
             configuration<br><br>
 
-            <code>
-            data "local_file" "input" {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;filename = "localfile.txt"<br>
-            }
-            </code><br><br>
+            <code>data "local_file" "input" {</code><br>
+            <code>filename = "localfile.txt" }</code><br><br>
 
             Providers may offer data sources that allow you to fetch information
             from the cloud
